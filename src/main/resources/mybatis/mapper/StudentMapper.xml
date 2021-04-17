@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hums.dao.StudentDao">
+
+    <select id="login" resultType="String" parameterType="String">
+        SELECT sname FROM student where sno = #{sno} and password = #{password}
+    </select>
+
+    <select id="getSno" resultType="String" parameterType="String">
+        SELECT tno FROM student  where sno = #{sno} and password = #{password}
+    </select>
+
+    <select id="userInfo" resultType="Student" parameterType="String">
+        SELECT * FROM student  where sno = #{sno}
+    </select>
+
+    <select id="getStuNumber" resultType="Integer">
+        select count(1) from student
+    </select>
+
+    <select id="stuInfo" resultType="Student" parameterType="Integer">
+        select * from student limit #{startRecord},#{pageSize}
+    </select>
+
+    <insert id="addUsers" parameterType="Student" >
+        insert student (sno,sname,password,tno,tname,tgrade) values (#{sno},#{sname},#{password},#{tno},#{tname},#{tgrade})
+    </insert>
+
+    <update id="updateUsers" parameterType="Student">
+        update student set sno=#{sno},sname=#{sno},password=#{password},tno=#{tno},tname=#{tname},tgrade=#{tgrade} where id =#{id}
+    </update>
+
+    <delete id="removeUsers" parameterType="Integer">
+        delete from student where id=#{id}
+    </delete>
+
+</mapper>
+
+
